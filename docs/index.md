@@ -47,3 +47,46 @@ Creamos el archivo `docker-compose.yml` con el siguiente contenido para ejecutar
     * `LDAP_ADMIN_PASSWORD=adminpassword`: Define la contraseña del administrador.
     * `LDAP_USERS=customuser`: Crea un usuario adicional llamado `customuser`.
     * `LDAP_PASSWORDS=custompassword`: Define la contraseña para `customuser`.
+
+
+Con el archivo docker-compose.yml creado, se levantarán los contenedores y se comprobará que funcionan correctamente.
+
+![](assets/04_docker_compose.png)
+
+Si accedemos a la dirección `http://ip-servidor:8090` deberá aparecer lo siguiente:
+
+![](assets/05_trying_auth.png)
+
+Introdcimos las credenciales de acceso y deberíamos poder acceder a la página principal.
+
+![](assets/06_auth.png)
+
+## Despliegue con Docker de PHP + Apache con autenticación LDAP
+
+Haciendo uso de la anterior estructura de directorios, se creará un archivo index.php con el siguiente contenido:
+
+![](assets/07_creamos_indexphp.png)
+
+En el directorio `Docker` se creará un archivo `Dockerfile` con el siguiente contenido:
+
+![](assets/08_dockerfile.png)
+
+Se creará un archivo en el directorio Docker llamado ldap-demo.conf con el siguiente contenido:
+
+![](assets/09_docker_ldapconf.png)
+
+Se creará a continuacion en el mismo directorio un archivo `.htaccess` con el siguiente contenido:
+
+![](assets/10_htaccess.png)
+
+* **.htaccess**: es un archivo de configuración utilizado por servidores web Apache. Este archivo permite modificar la configuración del servidor a nivel de directorio, lo que significa que se puede establecer reglas específicas para un directorio o subdirectorio del sitio web sin necesidad de modificar el archivo de configuración global del servidor.
+
+Tras esto, se ejecutará el siguiente comando para construir la imagen:
+![](assets/11_docker_build_correct.png)
+
+Si todo ha ido bien, se ejecutará el siguiente comando para levantar el contenedor:
+![](assets/12_run.png)
+
+Ahora Si accedemos a la dirección `http://ip-servidor:3000/demo` y nos logueamos con las credenciales de acceso `admin` y `Secret123`, deberá aparecer la siguiente pantalla:
+
+![](assets/13_auth.png)
