@@ -1,0 +1,940 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>Practica6.1 Docker</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-62-despliegue-de-servidores-web-con-usuarios-autenticados-mediante-ldap-usando-docker-y-docker-compose" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Practica6.1 Docker" class="md-header__button md-logo" aria-label="Practica6.1 Docker" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practica6.1 Docker
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 6.2 - Despliegue de servidores web con usuarios autenticados mediante LDAP usando Docker y docker-compose
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.2/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.3/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.3
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.4/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.5/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica2.6/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica2.6
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica3.4/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica3.3.4
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica3.5/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica3.5
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica-ampliacion/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica-amp
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practiva4.1/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica4.1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica5.1/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica5.1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica6.1/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica6.1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://yahyalimouni.github.io/practica6.2/" class="md-tabs__link">
+        
+  
+    
+  
+  Practica6.2
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Practica6.1 Docker" class="md-nav__button md-logo" aria-label="Practica6.1 Docker" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practica6.1 Docker
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica2.6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica2.6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica3.4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica3.3.4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica3.5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica3.5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica-ampliacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica-amp
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practiva4.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica4.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica5.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica5.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica6.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica6.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://yahyalimouni.github.io/practica6.2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica6.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx-demonio-de-autenticacion-ldap-openldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      NGINX + demonio de autenticación LDAP + OpenLDAP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-con-docker-de-php-apache-con-autenticacion-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue con Docker de PHP + Apache con autenticación LDAP
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-62-despliegue-de-servidores-web-con-usuarios-autenticados-mediante-ldap-usando-docker-y-docker-compose">Práctica 6.2 - Despliegue de servidores web con usuarios autenticados mediante LDAP usando Docker y docker-compose</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>Esta práctica se enfoca en desplegar servidores web con autenticación de usuarios mediante LDAP utilizando Docker y docker-compose. Los principales componentes son:</p>
+<h2 id="nginx-demonio-de-autenticacion-ldap-openldap">NGINX + demonio de autenticación LDAP + OpenLDAP</h2>
+<p>Tras conectarnos con ssh a nuestro servidor, creamos la estructura siguiente que es la que vamos a necesitar durante esta práctica</p>
+<p><img alt="" src="assets/01_tree.png" /></p>
+<p>Creamos un html básico con siguiente contenido:
+<img alt="" src="assets/02_html_holamundo.png" /></p>
+<p>A continuación configuramos nuestro servidor nginx 
+<img alt="" src="assets/03_nginxconf.png" /></p>
+<p>Hacemos que escuche el puerto 8090, y que redirige cualquier petición al servicio auth-proxy que a su vez la dirige a otro servicio corriendo en http://nginx-ldap:8888 que es el servicio de autenticación LDAP.</p>
+<p>Se establecen los encabezados para la autenticación:</p>
+<ul>
+<li><code>proxy_set_header</code> X-Ldap-URL "ldap://openldap:1389";: Define la URL y puerto del servidor LDAP (openldap:1389).</li>
+<li><code>proxy_set_header</code> X-Ldap-BaseDN "dc=example,dc=org";: Define el Base DN del directorio LDAP.</li>
+<li><code>proxy_set_header</code> X-Ldap-BindDN "cn=admin,dc=example,dc=org";: Define el Bind DN, es decir, la cuenta utilizada para autenticarse en LDAP.</li>
+<li><code>proxy_set_header</code> X-Ldap-BindPass "adminpassword";: Define la contraseña de la cuenta de administración LDAP.</li>
+</ul>
+<p>Creamos el archivo <code>docker-compose.yml</code> con el siguiente contenido para ejecutar los tres servicios <code>nginx-ldap</code> <code>nginx</code> y <code>openldap</code>:</p>
+<p><img alt="" src="assets/04_dockeryml.png" /></p>
+<ul>
+<li><strong>nginx-ldap</strong>  </li>
+<li>Utiliza la imagen <code>bitnami/nginx-ldap-auth-daemon-archived</code>, que es un servicio que se encarga de la autenticación LDAP en Nginx.  </li>
+<li>
+<p>Expone el puerto <strong>8888</strong>, lo que significa que este servicio estará disponible en <a href="http://localhost:8888">http://localhost:8888</a>.</p>
+</li>
+<li>
+<p><strong>nginx</strong>  </p>
+</li>
+<li>Usa la imagen <code>bitnami/nginx</code>, que es una versión de Nginx proporcionada por Bitnami.  </li>
+<li>Expone el puerto <strong>8090</strong>, lo que significa que el servidor Nginx estará accesible en <a href="http://localhost:8090">http://localhost:8090</a>.  </li>
+<li>
+<p>Usa volúmenes para montar archivos locales dentro del contenedor:</p>
+<ul>
+<li><code>./app:/app</code>: Mapea el directorio <code>./app</code> en el host al directorio <code>/app</code> en el contenedor.</li>
+<li><code>./conf/ldap_nginx.conf:/opt/bitnami/nginx/conf/server_blocks/ldap_nginx.conf</code>: Mapea el archivo de configuración <code>ldap_nginx.conf</code> al directorio de configuración de Nginx dentro del contenedor.</li>
+</ul>
+</li>
+<li>
+<p><strong>openldap</strong>  </p>
+</li>
+<li>Usa la imagen <code>bitnami/openldap</code>, que proporciona un servidor LDAP basado en OpenLDAP.  </li>
+<li>Expone el puerto <strong>1389</strong>, permitiendo el acceso a LDAP en <code>ldap://localhost:1389</code>.  </li>
+<li>Usa variables de entorno para configurar el servidor LDAP:<ul>
+<li><code>LDAP_ADMIN_USERNAME=admin</code>: Define el usuario administrador (<code>admin</code>).</li>
+<li><code>LDAP_ADMIN_PASSWORD=adminpassword</code>: Define la contraseña del administrador.</li>
+<li><code>LDAP_USERS=customuser</code>: Crea un usuario adicional llamado <code>customuser</code>.</li>
+<li><code>LDAP_PASSWORDS=custompassword</code>: Define la contraseña para <code>customuser</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Con el archivo docker-compose.yml creado, se levantarán los contenedores y se comprobará que funcionan correctamente.</p>
+<p><img alt="" src="assets/04_docker_compose.png" /></p>
+<p>Si accedemos a la dirección <code>http://ip-servidor:8090</code> deberá aparecer lo siguiente:</p>
+<p><img alt="" src="assets/05_trying_auth.png" /></p>
+<p>Introdcimos las credenciales de acceso y deberíamos poder acceder a la página principal.</p>
+<p><img alt="" src="assets/06_auth.png" /></p>
+<h2 id="despliegue-con-docker-de-php-apache-con-autenticacion-ldap">Despliegue con Docker de PHP + Apache con autenticación LDAP</h2>
+<p>Haciendo uso de la anterior estructura de directorios, se creará un archivo index.php con el siguiente contenido:</p>
+<p><img alt="" src="assets/07_creamos_indexphp.png" /></p>
+<p>En el directorio <code>Docker</code> se creará un archivo <code>Dockerfile</code> con el siguiente contenido:</p>
+<p><img alt="" src="assets/08_dockerfile.png" /></p>
+<p>Se creará un archivo en el directorio Docker llamado ldap-demo.conf con el siguiente contenido:</p>
+<p><img alt="" src="assets/09_docker_ldapconf.png" /></p>
+<p>Se creará a continuacion en el mismo directorio un archivo <code>.htaccess</code> con el siguiente contenido:</p>
+<p><img alt="" src="assets/10_htaccess.png" /></p>
+<ul>
+<li><strong>.htaccess</strong>: es un archivo de configuración utilizado por servidores web Apache. Este archivo permite modificar la configuración del servidor a nivel de directorio, lo que significa que se puede establecer reglas específicas para un directorio o subdirectorio del sitio web sin necesidad de modificar el archivo de configuración global del servidor.</li>
+</ul>
+<p>Tras esto, se ejecutará el siguiente comando para construir la imagen:
+<img alt="" src="assets/11_docker_build_correct.png" /></p>
+<p>Si todo ha ido bien, se ejecutará el siguiente comando para levantar el contenedor:
+<img alt="" src="assets/12_run.png" /></p>
+<p>Ahora Si accedemos a la dirección <code>http://ip-servidor:3000/demo</code> y nos logueamos con las credenciales de acceso <code>admin</code> y <code>Secret123</code>, deberá aparecer la siguiente pantalla:</p>
+<p><img alt="" src="assets/13_auth.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.top", "search.highlight", "search.share", "navigation.tracking"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
