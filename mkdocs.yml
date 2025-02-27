@@ -1,0 +1,33 @@
+site_name: Practica6.1 Docker
+
+nav:  
+  - Home: https://yahyalimouni.github.io
+  - Practica2.1: https://yahyalimouni.github.io/practica2/
+  - Practica2.2: https://yahyalimouni.github.io/practica2.2/
+  - Practica2.3: https://yahyalimouni.github.io/practica2.3/
+  - Practica2.4: https://yahyalimouni.github.io/practica2.4/
+  - Practica2.5: https://yahyalimouni.github.io/practica2.5/
+  - Practica2.6: https://yahyalimouni.github.io/practica2.6/
+  - Practica3.3.4: https://yahyalimouni.github.io/practica3.4/
+  - Practica3.5: https://yahyalimouni.github.io/practica3.5/
+  - Practica-amp: https://yahyalimouni.github.io/practica-ampliacion/
+  - Practica4.1: https://yahyalimouni.github.io/practiva4.1/
+  - Practica5.1: https://yahyalimouni.github.io/practica5.1/
+  - Practica6.1: https://yahyalimouni.github.io/practica6.1/
+  - Practica6.2: https://yahyalimouni.github.io/practica6.2/
+
+
+theme:
+  name: material
+  features:
+    - navigation.tabs  
+    - navigation.top  
+    - search.highlight  
+    - search.share  
+    - navigation.tracking  
+
+
+  palette:
+    scheme: slate
+    primary: cyan
+    accent: indigo
